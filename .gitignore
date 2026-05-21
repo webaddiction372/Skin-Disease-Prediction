@@ -33,7 +33,6 @@ instance/
 .webassets-cache
 
 # Model checkpoints (optional)
-*.h5
 *.pt
 *.pth
 *.ckpt
