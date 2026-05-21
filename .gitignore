@@ -11,42 +11,35 @@ __pycache__/
 # Environment variables
 .env
 
-# VS Code
+# IDE settings
 .vscode/
+.idea/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# System files
+# OS files
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
 
-# Build files
-build/
-dist/
-
-# Flask cache
-instance/
-.webassets-cache
-
-# Model checkpoints (optional)
-*.pt
-*.pth
-*.ckpt
-
-# SQLite database (optional)
-*.db
-
-# Temporary uploads
-uploads/
+# Temporary files
 temp/
+uploads/
 
 # Pytest cache
 .pytest_cache/
 
-# Coverage reports
-.coverage
-htmlcov/
+# Build/cache folders
+build/
+dist/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Node modules
+node_modules/
+
+# Frontend build cache
+.next/
+.cache/
