@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skin Disease Prediction System</title>
+
+  <!-- CSS FILES -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="premium-navbar">
+
+  <div class="nav-left">
+    <h2 class="logo">🧠 SkinAI</h2>
+  </div>
+
+  <div class="nav-right">
+
+    <a href="/"><button class="nav-btn">Home</button></a>
+
+    {% if logged_in %}
+      <a href="/profile"><button class="nav-btn">Profile</button></a>
+      <a href="/logout"><button class="nav-btn logout">Logout</button></a>
+    {% else %}
+      <a href="/login"><button class="nav-btn">Login</button></a>
+      <a href="/register"><button class="nav-btn register">Register</button></a>
+    {% endif %}
+
+  </div>
+
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+
+  <div class="hero-left">
+    <h1>Check your skin instantly</h1>
+    <p class="hero-sub">
+      AI-powered analysis for early skin disease detection
+    </p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-icon">📸</div>
+        <div>
+          <span>STEP 1</span>
+          <p>Take a photo of your skin</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">🤖</div>
+        <div>
+          <span>STEP 2</span>
+          <p>AI analyzes instantly</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">📊</div>
+        <div>
+          <span>STEP 3</span>
+          <p>Get prediction result</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">💡</div>
+        <div>
+          <span>STEP 4</span>
+          <p>Get medical guidance</p>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#upload">
+      <button class="cta-btn" onclick="scrollToUpload()">
+  GET INSTANT RESULT
+</button>
+    </a>
+
+  </div>
+
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5">
+  </div>
+
+</section>
+
+<!-- ================= UPLOAD SECTION ================= -->
+<section id="upload" class="section upload-section">
+
+  <h1>AI-Based Skin Disease Prediction</h1>
+  <p>Upload a skin image to get instant prediction and medical guidance</p>
+
+  <form method="post" action="/api/predict" enctype="multipart/form-data">
+
+    <!-- 🔥 UPDATED UPLOAD BOX -->
+    <label class="upload-box" id="dropZone">
+
+      <!-- TEXT CONTENT -->
+      <div id="uploadContent">
+        <div class="upload-icon">⬆️</div>
+        <h3>Drag & Drop Image Here</h3>
+        <p>or <span>Browse File</span></p>
+      </div>
+
+      <!-- IMAGE PREVIEW -->
+      <img id="preview"
+           style="
+           display:none;
+           width:100%;
+           height:100%;
+           object-fit:cover;
+           border-radius:10px;
+           ">
+
+      <!-- INPUT -->
+      <input type="file" name="image" id="imageInput" required>
+
+    </label>
+
+    <!-- BUTTON -->
+    <button class="primary">Predict Disease</button>
+
+  </form>
+
+  {% if not logged_in %}
+    <p class="warning">
+      Login required to view prediction results
+    </p>
+  {% endif %}
+
+</section>
+
+
+<!-- ================= HOW SECTION ================= -->
+<section class="how-section">
+  <h2>How to Use?</h2>
+
+  <div class="how-grid">
+
+    <div class="how-card">
+      <h3>1. Upload Image</h3>
+      <p>Upload clear skin image.</p>
+    </div>
+
+    <div class="how-card">
+      <h3>2. AI Analysis</h3>
+      <p>Model analyzes disease.</p>
+    </div>
+
+    <div class="how-card">
+      <h3>3. View Results</h3>
+      <p>Get prediction & guidance.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section class="section about-section">
+
+  <div class="main-container">
+
+    <div class="card">
+      <h3>About the System</h3>
+      <p>
+        The Skin Disease Prediction and Assistance System is an AI-powered
+        web application designed to assist users in identifying potential
+        skin diseases through image analysis.
+      </p>
+
+      <p>
+        The system uses deep learning models trained on dermatological datasets
+        to predict common skin conditions and provide preliminary medical guidance.
+      </p>
+
+      <p>
+        This platform is intended for awareness and early detection support and
+        does not replace professional medical diagnosis.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5"
+           alt="Skin Analysis">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ================= WHY SECTION ================= -->
+<section class="why-section">
+  <h2>Why is AI-Based Skin Disease Prediction Worth Using?</h2>
+
+  <div class="why-grid">
+
+    <div class="why-card">
+      <div class="icon">🧠</div>
+      <h3>Smart Analysis</h3>
+      <p>Deep learning based accurate prediction.</p>
+    </div>
+
+    <div class="why-card">
+      <div class="icon">⚡</div>
+      <h3>Fast Results</h3>
+      <p>Get results in seconds.</p>
+    </div>
+
+    <div class="why-card">
+      <div class="icon">📱</div>
+      <h3>Accessible</h3>
+      <p>Available anytime anywhere.</p>
+    </div>
+
+    <div class="why-card">
+      <div class="icon">💰</div>
+      <h3>Cost Effective</h3>
+      <p>Affordable early screening.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <h4>Skin Disease Prediction System</h4>
+  <p>AI-based platform</p>
+  <span>⚠️ For educational use only</span>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+const content = document.getElementById("uploadContent");
+const dropZone = document.getElementById("dropZone");
+
+// FILE SELECT
+input.addEventListener("change", function(e) {
+    const file = e.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+        content.style.display = "none";
+    }
+});
+
+// DRAG OVER
+dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+});
+
+// DROP
+dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+
+    const file = e.dataTransfer.files[0];
+    input.files = e.dataTransfer.files;
+
+    if (file && file.type.startsWith("image/")) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+        content.style.display = "none";
+    }
+});
+
+function scrollToUpload() {
+  document.getElementById("upload").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+</script>
+
+</body>
+</html>

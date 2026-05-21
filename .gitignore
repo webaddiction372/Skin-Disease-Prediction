@@ -1,0 +1,53 @@
+# Virtual Environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build files
+build/
+dist/
+
+# Flask cache
+instance/
+.webassets-cache
+
+# Model checkpoints (optional)
+*.h5
+*.pt
+*.pth
+*.ckpt
+
+# SQLite database (optional)
+*.db
+
+# Temporary uploads
+uploads/
+temp/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+.coverage
+htmlcov/

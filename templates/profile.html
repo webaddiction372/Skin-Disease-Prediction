@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+</head>
+
+<body>
+
+<header>
+  <h2>Welcome, {{ username }}</h2>
+  <div class="nav-actions">
+    <a href="/"><button>Dashboard</button></a>
+    <a href="/logout"><button>Logout</button></a>
+  </div>
+</header>
+
+<section class="profile-section">
+
+  <!-- USER INFO -->
+  <div class="profile-card">
+    <h3>👤 Profile</h3>
+    <p><b>Username:</b> {{ username }}</p>
+    <p><b>Total Predictions:</b> {{ history|length }}</p>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="action-bar">
+
+    <!-- FILTER -->
+    <form method="get" action="/profile">
+      <select name="disease" onchange="this.form.submit()">
+        <option value="">All Diseases</option>
+        {% for d in diseases %}
+          <option value="{{ d }}" {% if selected == d %}selected{% endif %}>
+            {{ d }}
+          </option>
+        {% endfor %}
+      </select>
+    </form>
+
+    <!-- DELETE ALL -->
+    <a href="/delete_all"
+       onclick="return confirm('Delete ALL history?')">
+      <button class="delete-all-btn">Delete All</button>
+    </a>
+
+  </div>
+
+  <!-- HISTORY -->
+  <h2 class="section-title">Prediction History</h2>
+
+  <div class="history-grid">
+
+    {% for item in history %}
+    <div class="history-card">
+
+      <img src="{{ url_for('static', filename='uploads/' + item.image) }}">
+
+      <div class="history-info">
+        <h3>{{ item.disease }}</h3>
+        <p>Confidence: {{ item.confidence }}%</p>
+
+        {% if item.confidence >= 80 %}
+          <span class="badge badge-high">High</span>
+        {% elif item.confidence >= 50 %}
+          <span class="badge badge-medium">Medium</span>
+        {% else %}
+          <span class="badge badge-low">Low</span>
+        {% endif %}
+
+        <!-- DELETE SINGLE -->
+        <a href="/delete_prediction/{{ item._id }}"
+           onclick="return confirm('Delete this item?')">
+          <button class="delete-btn">Delete</button>
+        </a>
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</section>
+
+</body>
+</html>

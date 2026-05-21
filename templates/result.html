@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result | Skin Disease Prediction</title>
+
+  <!-- CSS FILES -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <h2>Skin Disease Prediction & Assistance System</h2>
+  <div class="nav-actions">
+    <a href="/"><button>Dashboard</button></a>
+    <a href="/profile"><button>Profile</button></a>
+    <a href="/logout"><button>Logout</button></a>
+  </div>
+</header>
+
+<!-- ================= RESULT CONTENT ================= -->
+<div class="center-box" style="max-width:900px;">
+
+  <div style="text-align:center; margin-bottom:20px;">
+    <img src="{{ url_for('static', filename='uploads/' + image_path) }}" 
+         alt="Uploaded Image"
+         style="width:300px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+  </div>
+
+  <!-- Prediction Summary -->
+  <div class="result-card">
+    <div class="result-title">Prediction Summary</div>
+
+    <p>
+      <b>Predicted Disease:</b>
+      {{ result.predicted_disease }}
+
+      <!-- Confidence Badge -->
+      <span class="badge badge-confidence">
+        {{ result.confidence }}%
+      </span>
+    </p>
+
+    <!-- Severity Badge -->
+    {% if result.confidence >= 80 %}
+      <span class="badge badge-high">High Severity</span>
+    {% elif result.confidence >= 50 %}
+      <span class="badge badge-medium">Medium Severity</span>
+    {% else %}
+      <span class="badge badge-low">Low Severity</span>
+    {% endif %}
+  </div>
+
+  <!-- Disease Description -->
+  <div class="result-card">
+    <div class="result-title">Disease Description</div>
+    <p>
+      {{ result.assistance.description }}
+    </p>
+  </div>
+
+  <!-- Care Tips -->
+  <div class="result-card">
+    <div class="result-title">Care & Precautions</div>
+    <ul>
+      {% for tip in result.assistance.care_tips %}
+        <li>{{ tip }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Action -->
+  <div style="text-align:center; margin-top:30px;">
+    <a href="/"><button class="primary">Predict Another Image</button></a>
+  </div>
+
+</div>
+
+</body>
+</html>

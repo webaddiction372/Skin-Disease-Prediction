@@ -1,0 +1,37 @@
+# =========================
+# Core Deep Learning
+# =========================
+tensorflow==2.15.0
+
+# =========================
+# Image Processing
+# =========================
+opencv-python
+Pillow
+
+# =========================
+# Numerical & Data Handling
+# =========================
+numpy
+pandas
+
+# =========================
+# Visualization
+# =========================
+matplotlib
+
+# =========================
+# ML Utilities & Metrics
+# =========================
+scikit-learn
+
+# =========================
+# Progress & Utilities
+# =========================
+tqdm
+
+# =========================
+# Backend (for prediction API)
+# =========================
+flask
+flask-cors

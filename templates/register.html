@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | Skin Disease Prediction</title>
+
+  <!-- CSS FILES -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+</head>
+
+<body>
+
+<!-- ================= REGISTER BOX ================= -->
+<div class="center-box">
+
+  <h2>Create Account</h2>
+
+  <form method="post" action="/auth/register">
+
+    <input
+      type="text"
+      name="username"
+      placeholder="Username"
+      required
+    >
+
+    <br><br>
+
+    <input
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+    >
+
+    <button class="primary">
+      Register
+    </button>
+
+  </form>
+
+  <p style="margin-top:20px; text-align:center;">
+    Already have an account?
+    <a href="/login"><b>Back to Login</b></a>
+  </p>
+
+</div>
+
+</body>
+</html>
